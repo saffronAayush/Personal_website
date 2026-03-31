@@ -5,45 +5,28 @@ import {
   FaFastForward,
   FaGithub,
   FaLinkedin,
-  FaNodeJs,
   FaPhoneAlt,
-  FaPython,
 } from "react-icons/fa";
-import {
-  SiExpress,
-  SiFastapi,
-  SiJavascript,
-  SiMongodb,
-  SiNextdotjs,
-  SiReact,
-} from "react-icons/si";
-import { TbBrandCpp } from "react-icons/tb";
 
 const resumeLink =
   "https://drive.google.com/file/d/1n5s1qb3frMaVwoNntH5qTvt22Wp7FF_C/view?usp=drive_link";
 
 const profile = {
   name: "Aayush Soni",
-  title: "Full-Stack MERN Developer",
+  title: "Full-Stack Developer",
   photo: "https://github.com/saffronaayush.png",
-  about:
-    "I build performant, user-friendly web apps with a product-focused mindset. I enjoy solving real problems, building smooth UIs, and shipping full-stack features end to end.",
   github: "https://github.com/saffronaayush",
   linkedin: "https://www.linkedin.com/in/aayush-soni-dev",
   email: "soniaayush5562@gmail.com",
   phone: "+91 98765 43210",
 };
 
-const techStack = [
-  { name: "MongoDB", icon: SiMongodb },
-  { name: "Express.js", icon: SiExpress },
-  { name: "React", icon: SiReact },
-  { name: "Node.js", icon: FaNodeJs },
-  { name: "JavaScript", icon: SiJavascript },
-  { name: "C++", icon: TbBrandCpp },
-  { name: "Next.js", icon: SiNextdotjs },
-  { name: "Python", icon: FaPython },
-  { name: "FastAPI", icon: SiFastapi },
+const aboutContent = [
+  "Hi Everyone, I’m Aayush Soni from Rajasthan, India. I’m currently pursuing a B.Tech in Artificial Intelligence & Data Science at IIIT Sri City.",
+  "I’m fluent in core technologies like C++, JavaScript, and Python.",
+  "I enjoy building things for the web — whether it’s frontend UIs, backend systems, or exploring emerging tech like blockchain and AI/ML.",
+  "Whenever possible, I apply my passion for developing products using Node.js and modern JavaScript libraries and frameworks like React.js and Next.js.",
+  "I’ve solved 500+ DSA problems across multiple platforms, which has shaped my problem-solving mindset and helped me write efficient, clean code.",
 ];
 
 const projects = [
@@ -94,61 +77,113 @@ const projects = [
   },
 ];
 
+function SectionHeader({ title, subtitle }) {
+  return (
+    <div className="section-header">
+      <h3>{title}</h3>
+      <span>{subtitle}</span>
+    </div>
+  );
+}
+
 function App() {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const visibleProjects = useMemo(
     () => (showAllProjects ? projects : projects.slice(0, 3)),
-    [showAllProjects]
+    [showAllProjects],
   );
 
   return (
     <div className="page">
-      <a className="floating-resume" href={resumeLink} target="_blank" rel="noreferrer">
-        Resume
+      <a
+        className="floating-resume"
+        href={resumeLink}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <FaExternalLinkAlt /> Resume
       </a>
 
-      <header className="hero section">
-        <div className="hero-photo-wrap">
-          <img src={profile.photo} alt={`${profile.name} profile`} className="hero-photo" />
-        </div>
+      <nav className="top-nav fixed">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <header id="home" className="hero section hero-fullscreen">
+        <div className="hero-orb" aria-hidden="true" />
         <div className="hero-content">
-          <p className="eyebrow">Hello, I am</p>
-          <h1>{profile.name}</h1>
+          <p className="eyebrow">Welcome to my space</p>
+          <h1 className="hero-name">{profile.name}</h1>
           <h2>{profile.title}</h2>
-          <p className="about">{profile.about}</p>
+          <p className="hero-tagline">
+            Crafting full-stack products with clean UI and real impact.
+          </p>
 
           <div className="socials">
-            <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-              <FaGithub /> GitHub
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              <FaGithub />
             </a>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <FaLinkedin /> LinkedIn
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin />
             </a>
             <a href={`mailto:${profile.email}`} aria-label="Email">
-              <FaEnvelope /> Email
+              <FaEnvelope />
+            </a>
+          </div>
+          <div className="hero-actions">
+            <a
+              className="hero-resume"
+              href={resumeLink}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span>View Resume</span>
+              <FaExternalLinkAlt />
             </a>
           </div>
         </div>
       </header>
 
-      <section className="section">
-        <h3>Skillset & Tech Stack</h3>
-        <p className="section-lead">
-          Full MERN stack + modern backend and problem-solving languages.
-        </p>
-        <div className="skills-grid">
-          {techStack.map(({ name, icon: Icon }) => (
-            <div key={name} className="skill-card">
-              <Icon />
-              <span>{name}</span>
-            </div>
-          ))}
+      <section id="about" className="section">
+        <SectionHeader
+          title="About Me"
+          subtitle="A quick intro to who I am and how I work."
+        />
+        <div className="about-layout">
+          <div className="hero-photo-wrap">
+            <img
+              src={profile.photo}
+              alt={`${profile.name} profile`}
+              className="hero-photo"
+            />
+          </div>
+          <div className="about-text">
+            {aboutContent.map((paragraph) => (
+              <p key={paragraph} className="about section-lead">
+                {paragraph}
+              </p>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="section">
-        <h3>Projects</h3>
-        <p className="section-lead">Top projects first, with option to view all.</p>
+      <section id="projects" className="section">
+        <SectionHeader
+          title="Projects"
+          subtitle="Top projects first, with option to view all."
+        />
         <div className="projects-grid">
           {visibleProjects.map((project) => (
             <article key={project.name} className="project-card">
@@ -183,16 +218,23 @@ function App() {
         )}
       </section>
 
-      <section className="section contact">
-        <h3>Contact</h3>
-        <p>Let&apos;s build something together.</p>
-        <div className="contact-actions">
-          <a href={`mailto:${profile.email}`} className="contact-btn">
-            <FaEnvelope /> {profile.email}
-          </a>
-          <a href={`tel:${profile.phone.replace(/\s+/g, "")}`} className="contact-btn">
-            <FaPhoneAlt /> {profile.phone}
-          </a>
+      <section id="contact" className="section contact">
+        <div className="contact-inner">
+          <SectionHeader
+            title="Contact"
+            subtitle="Let's build something together."
+          />
+          <div className="contact-actions">
+            <a href={`mailto:${profile.email}`} className="contact-btn">
+              <FaEnvelope /> {profile.email}
+            </a>
+            <a
+              href={`tel:${profile.phone.replace(/\s+/g, "")}`}
+              className="contact-btn"
+            >
+              <FaPhoneAlt /> {profile.phone}
+            </a>
+          </div>
         </div>
       </section>
 
