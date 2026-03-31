@@ -19,7 +19,7 @@ const profile = {
   github: "https://github.com/saffronaayush",
   linkedin: "https://www.linkedin.com/in/aayush-soni-dev",
   email: "soniaayush5562@gmail.com",
-  phone: "+91 98765 43210",
+  phone: "+91 73003 09876",
 };
 
 const aboutContent = [
@@ -104,7 +104,11 @@ function App() {
               >
                 <FaLinkedin />
               </a>
-              <a href={mailtoLink} aria-label="Email" onClick={handleEmailClick}>
+              <a
+                href={mailtoLink}
+                aria-label="Email"
+                onClick={handleEmailClick}
+              >
                 <FaEnvelope />
               </a>
             </div>
@@ -183,7 +187,11 @@ function App() {
             subtitle="Let's build something together."
           />
           <div className="contact-actions">
-            <a href={mailtoLink} className="contact-btn" onClick={handleEmailClick}>
+            <a
+              href={mailtoLink}
+              className="contact-btn"
+              onClick={handleEmailClick}
+            >
               <FaEnvelope /> {profile.email}
             </a>
             <a
